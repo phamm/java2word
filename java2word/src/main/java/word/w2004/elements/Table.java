@@ -63,8 +63,8 @@ public class Table implements IElement {
             ITableItemStrategy item = TableFactoryMethod.getInstance().getTableItem(tableEle);
 
             for (int i = 0; i < cols.length; i++) {
-                //if(!"".equals(cols[i])){
-                th.append("\n" + item.getMiddle().replace("{value}", cols[i]));
+            	 //if(!"".equals(cols[i])){
+                	th.append("\n" + item.getMiddle().replace("{value}", (cols[i] != null ? cols[i]:"")));
                 //}
             }
 
