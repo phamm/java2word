@@ -53,7 +53,6 @@ public class TableCellStyle implements ISuperStylin{
     }
     
     /**
-<<<<<<< HEAD
      * accept value: continue or restart
      * Refer to: http://officeopenxml.com/WPtableCellProperties.php
      * 			Merge 	This element specifies that the cell is part of a vertically merged set of cells. defines the number of logical columns across which the cell spans. It has a single attribute w:val which specifies how the cell is part of a vertically merged region. The cell can be part of an existing group of merged cells or it can start a new group of merged cells. Possible values are:
@@ -64,10 +63,6 @@ public class TableCellStyle implements ISuperStylin{
      * Example:
 			tblPropSummary.addRow(TableRow.with( TableCell.with("Cell merge 1").withStyle().vMerge(_RESTART).create() ,TableCell.with("Cell merge 2").withStyle().vMerge(_RESTART).create() , "Cell not merge 3" )
 			tblPropSummary.addRow(TableRow.with( TableCell.with("").withStyle().vMerge(_CONTINUE).create() ,TableCell.with("").withStyle().vMerge(_CONTINUE).create(), "Cell not merge 4"))
-=======
-     * continue means: no merge
-     * restart means: with with other cell in vertical until continue
->>>>>>> branch 'master' of https://github.com/phamm/java2word.git
      * @param val
      * @return
      */
