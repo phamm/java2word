@@ -11,7 +11,7 @@ public class TableV2 implements IElement {
 
     private StringBuilder txt = new StringBuilder("");
     private boolean hasBeenCalledBefore = false;
-    
+    private boolean hasBorder = true;
     public String getContent() {
         if (hasBeenCalledBefore) {
             return txt.toString();
@@ -23,12 +23,23 @@ public class TableV2 implements IElement {
             return "";
         }
         // here it goes
-        txt.insert(0, tableTop);
+        if(hasBorder)
+        	txt.insert(0, tableTop);
+        else
+        	txt.insert(0, tableTopWithoutBorder);
         txt.append("\n" + tableBottom);
         
         //apply style
 
         return txt.toString();
+    }
+    
+    /**
+     * set border for table
+     * @param hasBorder
+     */
+    public void setBorder(boolean hasBorder){
+    	this.hasBorder = hasBorder;
     }
 
     /**
@@ -65,6 +76,13 @@ public class TableV2 implements IElement {
 			+"\n                <w:gridCol w:w=\"4258\"/> "
 			+"\n                <w:gridCol w:w=\"4258\"/> "
 			+"\n            </w:tblGrid> "
+			;
+	String tableTopWithoutBorder = 
+			 "\n	<w:tbl> "
+			+"\n            <w:tblPr> "
+			+"\n                <w:tblW w:w=\"0\" w:type=\"auto\"/> "
+			+"\n                <w:tblLook w:val=\"00BF\"/> "
+			+"\n            </w:tblPr> "
 			;
 	
     private String tableBottom = "\n	</w:tbl>";
