@@ -10,12 +10,14 @@ public class TableCellStyle implements ISuperStylin{
 	
 	private String bgColor = "";
 	private int gridSpan = 0;
+	private String vMerge = null;
 	
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		
 		doStyleBgColor(style);
 		doStyleGridSpan(style);
+		doVMerge(style);
 		
 		if(!"".equals(style.toString())){
 			style.insert(0, "<w:tcPr>");
@@ -50,6 +52,16 @@ public class TableCellStyle implements ISuperStylin{
     	return this;
     }
     
+    /**
+     * continue means: no merge
+     * restart means: with with other cell in vertical until continue
+     * @param val
+     * @return
+     */
+    public TableCellStyle vMerge(String val){
+    	this.vMerge = val;
+    	return this;
+    }
     
 	//### Chunk of code ######################################
     private void doStyleBgColor(StringBuilder style) {
@@ -61,6 +73,12 @@ public class TableCellStyle implements ISuperStylin{
     private void doStyleGridSpan(StringBuilder style) {
     	if (gridSpan > 0) {
     		style.append("\n            	<w:gridSpan w:val=\"" + this.gridSpan + "\"/>");
+    	}
+    }
+    private void doVMerge(StringBuilder style) {
+    	if (vMerge != null) {
+    		style.append("\n            	<w:tcW w:w=\"0\" w:type=\"auto\"/>");
+    		style.append("\n            	<w:vmerge w:val=\"" + this.vMerge + "\" />");
     	}
     }
     
