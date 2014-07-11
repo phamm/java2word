@@ -12,7 +12,7 @@ public class TableDefinition implements ITableItemStrategy{
 		String top = 
 			 "\n	<w:tbl> "
 			+"\n            <w:tblPr> "
-			+"\n                <w:tblW w:w=\"0\" w:type=\"auto\"/> "
+			+"\n                <w:tblW w:w=\"4975\" w:type=\"pct\"/> "
 			+"\n                <w:tblBorders> "
 			+"\n                    <w:top w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
 			+"\n                    <w:left w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "

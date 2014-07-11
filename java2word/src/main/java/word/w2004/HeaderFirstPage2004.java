@@ -3,7 +3,15 @@ package word.w2004;
 import word.api.interfaces.IElement;
 import word.api.interfaces.IHeader;
 
-public class Header2004 implements IHeader{
+/**
+ * header for first page
+ * @company NxTech Corp
+ * @author Mai Pham
+ * @date Jun 5, 2014
+ * @scottsdale 
+ * @verion
+ */
+public class HeaderFirstPage2004 implements IHeader{
 	
 	StringBuilder txt = new StringBuilder("");
 	private boolean hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
@@ -15,8 +23,8 @@ public class Header2004 implements IHeader{
 	 * * Notice that this class doesn't implement IFluentInterface.
 	 * 
 	 * */
-	public static Header2004 create() {
-		return new Header2004();
+	public static HeaderFirstPage2004 create() {
+		return new HeaderFirstPage2004();
 	}
 	public void addEle(IElement e) {
 		this.txt.append("\n" + e.getContent());
@@ -53,10 +61,9 @@ public class Header2004 implements IHeader{
 	public void setHideHeaderAndFooterFirstPage(boolean value) {
 		this.hideHeaderAndFooterFirstPage = value;
 	}
-	
-	//change from odd to default type so it doesn't confuse
-	private static final String HEADER_TOP = "\n\n	<w:hdr w:type=\"default\">";
-	private static final String HEADER_BOTTON = "\n	</w:hdr>";
+
+	private static final String HEADER_TOP = "\n\n	<w:hdr w:type=\"first\">";
+	private static final String HEADER_BOTTON = "\n	</w:hdr><w:titlePg/> ";
 	public static final String HIDE_HEADER__FOOTER_FIRST_PAGE =
 		"\n            <w:hdr w:type=\"first\"> "
 		+"\n                <w:p wsp:rsidR=\"00005E72\" wsp:rsidRDefault=\"00005E72\"> "
@@ -78,6 +85,5 @@ public class Header2004 implements IHeader{
 		+"\n            <w:titlePg/> "		
 		;
 
-	
 
 }

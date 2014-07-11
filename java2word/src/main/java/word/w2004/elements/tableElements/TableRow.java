@@ -20,6 +20,17 @@ public class TableRow implements IElement, IFluentElementStylable<TableRowStyle>
 		
         txt.append(tableRowBottom);
 	}
+	public void setRow(TableCell[] cols) {
+        txt.append(tableRowTop);
+
+        for (int i = 0; i < cols.length; i++) {            
+        	//TableCell knows how to do the rest.
+        	txt.append( cols[i].create().getContent() );
+        }
+		
+        txt.append(tableRowBottom);
+	}
+	public TableRow(){}
 
 	@Override
 	public TableRowStyle withStyle() {
@@ -36,5 +47,11 @@ public class TableRow implements IElement, IFluentElementStylable<TableRowStyle>
 	public static TableRow with(Object ... colls) {		
 		return new TableRow(colls);
 	}
+	public static TableRow withCell(TableCell ... colls) {	
+		TableRow row = new TableRow();
+		row.setRow(colls);
+		return row;
+	}
+	
 
 }

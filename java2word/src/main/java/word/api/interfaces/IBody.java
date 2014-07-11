@@ -14,5 +14,9 @@ public interface IBody extends IHasElement{
 	
 	public IFooter getFooter();
 //	public void setFooter(IFooter footer);	
-	
+
+	public abstract IHeader getHeaderFirstPage();
+
+	void setPageOrientationLandscape();
+
 }

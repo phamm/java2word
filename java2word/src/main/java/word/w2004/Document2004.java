@@ -18,6 +18,15 @@ public class Document2004 implements IDocument, IElement{
     private StringBuilder txt = new StringBuilder();
     private IBody body = new Body2004();
     private boolean isLandscape = false;
+    
+    private boolean defaultMargin = true;
+    private String margingTop = null;
+    private String marginBottom = null;
+    private String marginLeft = null;
+    private String marginHeader = null;
+    private String marginRight = null;
+    private String marginFooter = null;
+    private String marginGutter = null;
 
     //Document properties <o:DocumentProperties>
     private String title = "Java2word title";
@@ -71,13 +80,36 @@ public class Document2004 implements IDocument, IElement{
 
         return docHead;
     }
-
+    
+    /**
+     * set margin page
+     * @param top
+     * @param right
+     * @param bottom
+     * @param left
+     * @param header
+     * @param footer
+     * @param gutter
+     */
+    public void setMargin(String top, String right, String bottom, String left, String header, String footer, String gutter){
+    	defaultMargin = false;
+    	margingTop = top;
+    	marginRight = right;
+    	marginBottom = bottom;
+    	marginLeft = left;
+    	marginHeader = header;
+    	marginFooter = footer;
+    	marginGutter = gutter;
+    }
     private String setUpPageOrientation(String txt) {
         if(isLandscape) {
             String orientation = "    <w:sectPr wsp:rsidR=\"00F04FB2\" wsp:rsidSect=\"00146B2A\">\n"
-                + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"
-                + "      <w:pgMar w:top=\"1800\" w:right=\"1440\" w:bottom=\"1800\" w:left=\"1440\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n"
-                + "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
+                + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n";
+            if(defaultMargin)
+            	orientation += "      <w:pgMar w:top=\"720\" w:right=\"720\" w:bottom=\"720\" w:left=\"720\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n";
+            else
+            	orientation += "      <w:pgMar w:top=\"" + margingTop + "\" w:right=\"" + marginRight + "\" w:bottom=\"" + marginBottom + "\" w:left=\"" + marginLeft + "\" w:header=\"" + marginHeader + "\" w:footer=\"" +marginFooter+ "\" w:gutter=\"" + marginGutter + "\"/>\n";
+            orientation += "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
             txt = txt.replace("</w:body>", orientation + "\n</w:body>");
         }
         return txt;
@@ -100,6 +132,10 @@ public class Document2004 implements IDocument, IElement{
     @Override
     public IHeader getHeader() {
         return this.getBody().getHeader(); //forward it to the body
+    }
+    @Override
+    public IHeader getHeaderFirstPage() {
+        return this.getBody().getHeaderFirstPage(); //forward it to the body
     }
 
     /**
@@ -124,59 +160,59 @@ public class Document2004 implements IDocument, IElement{
     }
 
     @Override
-    public Document2004 title(String title) {
+    public IDocument title(String title) {
         this.title = title;
         return this;
     }
     @Override
-    public Document2004 subject(String subject) {
+    public IDocument subject(String subject) {
         this.subject = subject;
         return this;
     }
     @Override
-    public Document2004 keywords(String keywords) {
+    public IDocument keywords(String keywords) {
         this.keywords = keywords;
         return this;
     }
     @Override
-    public Document2004 description(String description) {
+    public IDocument description(String description) {
         this.description = description;
         return this;
     }
     @Override
-    public Document2004 category(String category) {
+    public IDocument category(String category) {
         this.category = category;
         return this;
     }
     @Override
-    public Document2004 author(String author) {
+    public IDocument author(String author) {
         this.author = author;
         return this;
     }
     @Override
-    public Document2004 lastAuthor(String lastAuthor) {
+    public IDocument lastAuthor(String lastAuthor) {
         this.lastAuthor = lastAuthor;
         return this;
     }
     @Override
-    public Document2004 manager(String manager) {
+    public IDocument manager(String manager) {
         this.manager = manager;
         return this;
     }
     @Override
-    public Document2004 company(String company) {
+    public IDocument company(String company) {
         this.company = company;
         return this;
     }
 
     @Override
-    public Document2004 encoding(Encoding encoding) {
+    public IDocument encoding(Encoding encoding) {
         this.encoding = encoding.getValue();
         return this;
     }
     
     @Override
-    public Document2004 encoding(String encoding) {
+    public IDocument encoding(String encoding) {
         this.encoding = encoding;
         return this;
     }
