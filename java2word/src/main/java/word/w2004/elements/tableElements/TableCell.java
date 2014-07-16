@@ -70,7 +70,17 @@ public class TableCell implements IElement, IFluentElement<TableCell>, IFluentEl
 	        		//Paragraph for example...
 	        		//apply parent styles
 	        		//((Paragraph) cell).withStyle().
-	            	txt.append( ((IElement) cell).getContent() );
+	            	IElement elm = (IElement) cell;
+	            	
+	            	//simple do a getContent because object is already a TableCell
+	        		txt.append(tableCellTop);
+	        		if(!border.toString().isEmpty())
+	            		txt.append("<w:tcPr><w:tcBorders>" + border.toString() + "</w:tcBorders></w:tcPr>");
+	        		if (elm.getContent() != null && elm.getContent().isEmpty() == false)
+	        			txt.append( elm.getContent() );
+	        		else
+	        			txt.append("<w:p><w:r></w:r></w:p>");//Empty Paragraph  
+	        		txt.append(tableCellBottom);
 	        	}
 	        	
 	        } else {
