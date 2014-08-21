@@ -9,6 +9,8 @@ import word.w2004.Document2004.Encoding;
  *
  */
 public interface IDocument extends IHasElement {
+	
+	public void setMargin(String top, String right, String bottom, String left, String header, String footer, String gutter);
 
     /**
      * @return the URI ready to be added to the document
